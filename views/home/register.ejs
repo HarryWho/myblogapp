@@ -5,19 +5,19 @@
     <form action="/register" method="POST">
       <div class="mb-2">
         <label for="username" class="form-label">Username</label>
-        <input type="text" class="form-control" name="username" placeholder="Username">
+        <input type="text" class="form-control" name="username" placeholder="Username" value="<%= regFields.username %>">
       </div>
       <div class="mb-2">
         <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" name="email" placeholder="Username">
+        <input type="email" class="form-control" name="email" placeholder="Email" value="<%= regFields.email %>">
       </div>
       <div class="mb-2">
         <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" name="password" placeholder="Password">
+        <input type="password" class="form-control" name="password" placeholder="Password" value="<%= regFields.password %>">
       </div>
       <div class="mb-2">
         <label for="password2" class="form-label">Retype Password</label>
-        <input type="password" class="form-control" name="password2" placeholder="Retype Password">
+        <input type="password" class="form-control" name="password2" placeholder="Retype Password" value="<%= regFields.password2 %>">
       </div>
       <button type="submit" class="btn btn-primary mt-2">Submit</button>
       <a href="/login" class="text-success btn">Login</a>
