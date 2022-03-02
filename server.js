@@ -1,9 +1,11 @@
 // import required modules
 require('dotenv').config()
 require('ejs')
+var session = require('express-session')
 const mongoose = require('mongoose')
 const express = require('express')
 const expressLayouts = require('express-ejs-layouts')
+const flash = require('connect-flash')
 
 // create app server
 const app = express()
@@ -19,6 +21,21 @@ app.use(expressLayouts)
 
 // urlencode bodyparser for data passed in a form i.e req.body.form_element
 app.use(express.urlencoded({ extended: false }));
+
+// express session
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true
+
+  }))
+  // set up local variables for flash messages
+app.use(flash())
+app.use((req, res, next) => {
+  res.locals.error_msg = req.flash('error_msg')
+  res.locals.success_msg = req.flash('success_msg')
+  next()
+})
 
 // import routes
 const indexRoute = require("./routes/index");

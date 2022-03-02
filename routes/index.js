@@ -26,13 +26,16 @@ router.get("/register", (req, res) => {
 })
 
 router.post('/register', async(req, res) => {
-  FormIsValide(req)
-  if (errorMessages.length > 0) {}
+  FormIsValid(req)
+  if (errorMessages.length > 0) {
+    req.flash('success_msg', "Success")
+    res.redirect('/');
+  }
 
 
 })
 
-function FormIsValide(req) {
+function FormIsValid(req) {
   if (req.username == "" || req.email == null || req.password == '' || req.password2 == '') {
     errorMessages.push("Please fill in all fields")
   }
