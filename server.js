@@ -32,14 +32,6 @@ app.use(session({
 
 }))
 
-// Set up Passport
-app.use(passport.initialize());
-app.use(passport.session());
-
-passport.use(UserDetails.createStrategy());
-passport.serializeUser(UserDetails.serializeUser());
-passport.deserializeUser(UserDetails.deserializeUser());
-
 // set up local variables for flash messages
 app.use(flash())
 app.use((req, res, next) => {
@@ -49,12 +41,21 @@ app.use((req, res, next) => {
   next()
 })
 
+// Set up Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(UserDetails.createStrategy());
+passport.serializeUser(UserDetails.serializeUser());
+passport.deserializeUser(UserDetails.deserializeUser());
+
 // import routes
 const indexRoute = require("./routes/index");
+const userRouter = require("./routes/user")
 
 // Use routes
 app.use('/', indexRoute);
-
+app.use('/user', userRouter);
 // connect and start mongodb
 mongoose.connect(process.env.DATABASE_URL)
 const db = mongoose.connection;

@@ -1,29 +1,17 @@
-<% if(typeof errorMessages!='undefined'&&errorMessages.length>0) { %>
-  <% errorMessages.forEach(error=>{ %>
-    <div class="alert alert-dismissible alert-danger col-lg-4 mx-auto">
-      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-      <!-- <strong>Oh snap!</strong> -->
-      <%= error %>
-    </div>
-    <% }) %>
+<% if(error_msg!=''){%>
+  <div class="alert alert-dismissible alert-danger col-lg-4 mx-auto">
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+
+    <%= error_msg %>
+  </div>
+
+  <% } %>
+
+    <!-- Success Message -->
+    <% if(typeof success_msg&&success_msg!=''){%>
+      <div class="alert alert-dismissible alert-success col-lg-4 mx-auto">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>Oh snap!</strong>
+        <%= success_msg %>
+      </div>
       <% } %>
-
-        <% if(error_msg!=''){%>
-          <div class="alert alert-dismissible alert-danger col-lg-4 mx-auto">
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-
-            <%= error_msg %>
-          </div>
-
-          <% } %>
-
-            <!-- Success Message -->
-            <% if(success_msg!=''){%>
-              <div class="alert alert-dismissible alert-success col-lg-4 mx-auto">
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                <strong>Oh snap!</strong>
-                <%= success_msg %>
-              </div>
-
-
-              <% } %>
