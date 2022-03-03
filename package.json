@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/HarryWho/myblogapp#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "connect-ensure-login": "^0.1.1",
     "connect-flash": "^0.1.1",
     "dotenv": "^16.0.0",
@@ -24,6 +25,7 @@
     "express": "^4.17.3",
     "express-ejs-layouts": "^2.5.1",
     "express-session": "^1.17.2",
+    "express-validator": "^6.14.0",
     "mongoose": "^6.2.4",
     "passport": "^0.5.2",
     "passport-local-mongoose": "^6.1.0"

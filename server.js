@@ -1,11 +1,13 @@
 // import required modules
 require('dotenv').config()
 require('ejs')
-var session = require('express-session')
+const UserDetails = require('./models/user');
+const session = require('express-session')
 const mongoose = require('mongoose')
 const express = require('express')
 const expressLayouts = require('express-ejs-layouts')
 const flash = require('connect-flash')
+const passport = require('passport')
 
 // create app server
 const app = express()
@@ -24,16 +26,26 @@ app.use(express.urlencoded({ extended: false }));
 
 // express session
 app.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true
 
-  }))
-  // set up local variables for flash messages
+}))
+
+// Set up Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(UserDetails.createStrategy());
+passport.serializeUser(UserDetails.serializeUser());
+passport.deserializeUser(UserDetails.deserializeUser());
+
+// set up local variables for flash messages
 app.use(flash())
 app.use((req, res, next) => {
   res.locals.error_msg = req.flash('error_msg')
   res.locals.success_msg = req.flash('success_msg')
+
   next()
 })
 
@@ -49,7 +61,7 @@ const db = mongoose.connection;
 
 // monitor mongoose
 db.on('error', err => {
-  console.error(err.message)
+  console.error(err)
 })
 
 db.once('open', () => {

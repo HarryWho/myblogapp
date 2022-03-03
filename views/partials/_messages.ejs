@@ -1,4 +1,4 @@
-<% if(errorMessages&&errorMessages.length>0) { %>
+<% if(typeof errorMessages!='undefined'&&errorMessages.length>0) { %>
   <% errorMessages.forEach(error=>{ %>
     <div class="alert alert-dismissible alert-danger col-lg-4 mx-auto">
       <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
