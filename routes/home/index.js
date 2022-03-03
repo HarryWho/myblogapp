@@ -1,7 +1,7 @@
 const express = require('express')
 
 const router = express.Router();
-const connectEnsureLogin = require('connect-ensure-login');
+
 const passport = require('passport');
 
 // const req = require('express/lib/request');
@@ -36,7 +36,7 @@ router.post('/register', validationRule.form, userController.validateForm)
 
 router.post('/login', passport.authenticate('local', {
   failureRedirect: '/login',
-  successRedirect: '/',
+  successReturnToOrRedirect: '/',
 }))
 
 module.exports = router;

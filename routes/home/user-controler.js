@@ -1,6 +1,6 @@
 const { validationResult, matchedData } = require('express-validator');
 
-const UserDetails = require('../models/user');
+const UserDetails = require('../../models/user');
 module.exports = {
   userForm: function(req, res) {
     res.render('home/register');

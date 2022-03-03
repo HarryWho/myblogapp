@@ -50,8 +50,8 @@ passport.serializeUser(UserDetails.serializeUser());
 passport.deserializeUser(UserDetails.deserializeUser());
 
 // import routes
-const indexRoute = require("./routes/index");
-const userRouter = require("./routes/user")
+const indexRoute = require("./routes/home/index");
+const userRouter = require("./routes/user/user")
 
 // Use routes
 app.use('/', indexRoute);
