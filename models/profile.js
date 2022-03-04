@@ -1,9 +1,11 @@
 const mongoose = require('mongoose')
-const User = require('./user')
+
 const UserProfile = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectID,
     ref: 'User'
+
+
   },
   firstName: {
     type: String
@@ -19,3 +21,4 @@ const UserProfile = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('UserProfile', UserProfile)
+  //module.exports = mongoose.model('User', User)

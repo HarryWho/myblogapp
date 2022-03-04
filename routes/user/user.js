@@ -9,12 +9,20 @@ router.get('/', connectEnsureLogin.ensureLoggedIn('/login'), (req, res) => {
   res.render('user/user', { user: req.user })
 })
 
-router.get('/profile/:id', connectEnsureLogin.ensureLoggedIn('/login'), async(req, res) => {
-  try {
-    const profile = await User.findById(req.params.id).populate('userId')
+router.get('/profile/add', (req, res) => {
 
+  res.render('user/profile', { inputData: new Profile(), user: req.user })
+})
+
+router.get('/profile/:id', connectEnsureLogin.ensureLoggedIn('/login'), async(req, res) => {
+
+  try {
+    const profile = await User.findOne({ id: req.params.id }).populate({
+      path: 'userId',
+      model: "UserProfile"
+    });
     console.log(profile)
-    res.render('user/userprofile', { inputData: profile })
+    res.render('user/userprofile', { inputData: profile, user: req.user })
   } catch (err) {
     console.log(`Error: ${err}`)
     req.flash('error_msg', `${err}`)
@@ -22,12 +30,23 @@ router.get('/profile/:id', connectEnsureLogin.ensureLoggedIn('/login'), async(re
   }
 })
 
-router.get('/profile/add', (req, res) => {
-  res.render('user/profile')
-})
+
+
 router.post('/profile', async(req, res) => {
-  const profile = await new Profile(req.body);
-  profile.save()
-  res.redirect('/user');
+  let profile = await new Profile({
+    userId: req.user.id,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    about: req.body.about
+  });
+  try {
+    profile.save()
+    await User.findByIdAndUpdate({ _id: req.user.id }, { userId: profile._id });
+    res.redirect('/user');
+  } catch (err) {
+    req.flash('error_msg', "Something went wrong")
+    res.render('user/profile', { inputData: profile, user: req.user })
+  }
+
 })
 module.exports = router;
