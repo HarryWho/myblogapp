@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const connectEnsureLogin = require('connect-ensure-login');
-const User = require('../../models/user')
-const Profile = require('../../models/profile');
+const User = require('../../models/user/user')
+const Profile = require('../../models/user/profile');
 
 
 router.get('/', connectEnsureLogin.ensureLoggedIn('/login'), (req, res) => {
@@ -19,9 +19,9 @@ router.get('/profile/:id', connectEnsureLogin.ensureLoggedIn('/login'), async(re
   try {
     const profile = await User.findOne({ id: req.params.id }).populate({
       path: 'userId',
-      model: "UserProfile"
+      select: ["firstName", "lastName", "about"]
     });
-    console.log(profile)
+
     res.render('user/userprofile', { inputData: profile, user: req.user })
   } catch (err) {
     console.log(`Error: ${err}`)

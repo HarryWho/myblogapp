@@ -1,7 +1,7 @@
 // import required modules
 require('dotenv').config()
 require('ejs')
-const UserDetails = require('./models/user');
+const UserDetails = require('./models/user/user');
 const session = require('express-session')
 const mongoose = require('mongoose')
 const express = require('express')

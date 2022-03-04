@@ -6,8 +6,8 @@ const router = express.Router();
 const passport = require('passport');
 
 // const req = require('express/lib/request');
-const userController = require('./user-controler');
-const validationRule = require('./validation-rules');
+const userController = require('./../middleware/user-controler');
+const validationRule = require('./../middleware/validation-rules');
 
 
 router.get('/', (req, res) => {
