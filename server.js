@@ -24,15 +24,15 @@ app.use(expressLayouts)
 // urlencode bodyparser for data passed in a form i.e req.body.form_element
 app.use(express.urlencoded({ extended: false }));
 
+
 // express session
 app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true
 
-}))
-
-// set up local variables for flash messages
+  }))
+  // set up local variables for flash messages
 app.use(flash())
 app.use((req, res, next) => {
   res.locals.error_msg = req.flash('error_msg')

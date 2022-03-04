@@ -10,7 +10,7 @@ exports.form = [
   check('email').notEmpty().withMessage('Email Address required').normalizeEmail().isEmail().withMessage('must be a valid email'),
   // password validation
   check('password').trim().notEmpty().withMessage('Password required')
-  .isLength({ min: 5 }).withMessage('password must be minimum 5 length')
+  .isLength({ min: 6 }).withMessage('password must be minimum 6 length')
   //   .matches(/(?=.*?[A-Z])/).withMessage('At least one Uppercase')
   //   .matches(/(?=.*?[a-z])/).withMessage('At least one Lowercase')
   //   .matches(/(?=.*?[0-9])/).withMessage('At least one Number')
@@ -19,7 +19,7 @@ exports.form = [
   // confirm password validation
   check('password2').custom((value, { req }) => {
     if (value !== req.body.password) {
-      throw new Error('Password Confirmation does not match password');
+      throw new Error('Passwords do not match');
     }
     return true;
   })

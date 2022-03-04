@@ -1,32 +1,45 @@
-<div class="px-4 py-1 my-4 text-center">
-  <img class="d-block mx-auto mb-4 bg-secondary rounded-circle" src="https://uilogos.co/img/logomark/u-mark.png" alt="" width="auto" height="100">
-  <h3 class="display-6 fw-bold">Register Here</h3>
+<div class="py-1 my-4">
+  <!-- <img class="d-block mx-auto mb-4 bg-secondary rounded-circle" src="https://uilogos.co/img/logomark/u-mark.png" alt="" width="auto" height="100"> -->
+  <h3 class="display-6 fw-bold text-center">Register Here</h3>
   <div class="col-lg-3 mx-auto">
     <form action="/register" method="POST">
-      <div class="mb-2">
+      <div class="form-group mb-2">
         <label for="username" class="form-label">Username</label>
-        <input type="text" class="form-control" name="username" placeholder="Username" value="<%=(typeof inputData!='undefined')? inputData.username:''%>">
+        <div class="input-group">
+          <span class="input-group-text"><i class="material-icons">person</i></span>
+          <input type="text" class="form-control" name="username" placeholder="Username" value="<%=(typeof inputData!='undefined')? inputData.username:''%>">
+        </div>
         <p style="color: red;">
           <%=(typeof errors!='undefined' && typeof errors.username!='undefined' )? errors.username.msg:''%>
         </p>
       </div>
-      <div class="mb-2">
+      <div class="form-group mb-2">
         <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" name="email" placeholder="Email" value="<%=(typeof inputData!='undefined')? inputData.email:''%>">
+        <div class="input-group">
+          <span class="input-group-text"><i class="material-icons">mail</i></span>
+          <input type="email" class="form-control" name="email" placeholder="Email" value="<%=(typeof inputData!='undefined')? inputData.email:''%>">
+        </div>
         <p style="color: red;">
           <%=(typeof errors!='undefined' && typeof errors.email!='undefined' )? errors.email.msg:''%>
         </p>
       </div>
-      <div class="mb-2">
+      <div class="form-group mb-2">
+
         <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" name="password" placeholder="Password">
+        <div class="input-group">
+          <span class="input-group-text"><i class="material-icons">lock_outline</i></span>
+          <input type="password" class="form-control" name="password" placeholder="Password">
+        </div>
         <p style="color: red;">
           <%=(typeof errors!='undefined' && typeof errors.password!='undefined' )? errors.password.msg:''%>
         </p>
       </div>
-      <div class="mb-2">
+      <div class="form-group mb-2">
         <label for="password2" class="form-label">Retype Password</label>
-        <input type="password" class="form-control" name="password2" placeholder="Retype Password">
+        <div class="input-group">
+          <span class="input-group-text"><i class="material-icons">lock_outline</i></span>
+          <input type="password" class="form-control" name="password2" placeholder="Retype Password">
+        </div>
         <p style="color: red;">
           <%=(typeof errors!='undefined' && typeof errors.password2!='undefined' )? errors.password2.msg:''%>
         </p>

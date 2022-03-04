@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const UserProfile = require('./profile')
 const passportLocalMongoose = require('passport-local-mongoose');
 User = mongoose.Schema({
   username: {
@@ -16,6 +17,10 @@ User = mongoose.Schema({
   isValidated: {
     type: Boolean,
     default: false
+  },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'UserProfile'
   }
 })
 
