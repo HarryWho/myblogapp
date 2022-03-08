@@ -1,0 +1,19 @@
+{
+  "name": "blogger",
+  "version": "1.0.0",
+  "description": "my blogger app",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HarryWho/blogger.git"
+  },
+  "author": "Calvin Bartlett",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HarryWho/blogger/issues"
+  },
+  "homepage": "https://github.com/HarryWho/blogger#readme"
+}
