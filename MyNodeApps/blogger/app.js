@@ -14,7 +14,7 @@ config.config({ path: './config/config.env' })
 const app = express()
 const server = require('http').createServer(app);
 const { myGooglePassport } = require('./config/passport')
-myGooglePassport(passport)
+
 
 // body parser
 app.use(express.urlencoded({ extended: false }))
@@ -29,14 +29,6 @@ app.set('layout', 'layouts/layout')
 app.use(expressLayout)
 app.set("layout extractScripts", true)
 app.set("layout extractStyles", true)
-
-
-// Routes
-const homeRoute = require('./routes/home/index');
-const authRoute = require('./routes/auth/auth');
-
-app.use('/', homeRoute);
-app.use('/auth', authRoute);
 
 // Express session
 app.use(session({
@@ -53,6 +45,14 @@ app.use(session({
 // Passport Middleware
 app.use(passport.initialize())
 app.use(passport.session())
+myGooglePassport(passport)
+  // Routes
+const homeRoute = require('./routes/home/index');
+const authRoute = require('./routes/auth/auth');
+
+app.use('/', homeRoute);
+app.use('/auth', authRoute);
+
 
 
 
