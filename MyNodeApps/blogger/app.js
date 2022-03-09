@@ -10,17 +10,17 @@ const MongoStore = require('connect-mongo')
 // Set process.env Variables
 config.config({ path: './config/config.env' })
 
-// Connect MongoDB
-ConnectDB();
-
-
 // Create Server
 const app = express()
 const server = require('http').createServer(app);
 const { myGooglePassport } = require('./config/passport')
-
 myGooglePassport(passport)
-  // static public folder
+
+// body parser
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
+
+// static public folder
 app.use(express.static('public'))
 
 // View Engine
@@ -29,6 +29,7 @@ app.set('layout', 'layouts/layout')
 app.use(expressLayout)
 app.set("layout extractScripts", true)
 app.set("layout extractStyles", true)
+
 
 // Routes
 const homeRoute = require('./routes/home/index');
@@ -45,7 +46,7 @@ app.use(session({
     mongooseConnection: mongoose.connection
   }),
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: true
 }))
 
 
@@ -54,6 +55,9 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 
+
+// Connect MongoDB
+ConnectDB();
 
 
 

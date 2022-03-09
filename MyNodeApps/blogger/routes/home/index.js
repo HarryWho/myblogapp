@@ -7,7 +7,8 @@ router.get('/', (req, res) => {
   res.render("home/index")
 })
 
-router.get('/welcome', ensureAuth, (req, res) => {
+router.get('/welcome', (req, res) => {
+  console.log(req.isAuthenticated())
   res.render('home/welcome', { user: req.user })
 })
 module.exports = router;

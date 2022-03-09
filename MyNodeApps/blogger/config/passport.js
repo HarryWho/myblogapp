@@ -1,7 +1,8 @@
-const GoogleStrategy = require('passport-google-oauth20').Strategy
+const GoogleStrategy = require('passport-google-oauth2').Strategy
 
 const mongoose = require('mongoose')
 const User = require('../models/User')
+const passport = require('passport')
 
 module.exports = {
   myGooglePassport: function(passport) {
@@ -12,7 +13,7 @@ module.exports = {
 
       },
       async(accessToken, refreshToken, profile, done) => {
-        console.log(profile)
+
         const newUser = {
           googleId: profile.id,
           displayName: profile.displayName,
