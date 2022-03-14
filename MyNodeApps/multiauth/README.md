@@ -1,4 +1,4 @@
-# Multiple Authentications 
+# Multiple Authentications
 
 ## passport-local
 
