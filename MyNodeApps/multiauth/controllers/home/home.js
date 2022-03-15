@@ -17,4 +17,8 @@ router.get('/logout', ensureAuth, (req, res) => {
   req.logout();
   res.redirect('/')
 })
+
+router.get('/register', ensureGuest, (req, res) => {
+  res.render("home/register", { form: '' })
+})
 module.exports = router

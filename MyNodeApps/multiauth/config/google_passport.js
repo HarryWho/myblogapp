@@ -1,6 +1,6 @@
 const passport = require('passport')
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
-const GoogleUser = require('../models/googleSchema')
+const User = require('../models/googleSchema')
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -10,7 +10,7 @@ passport.use(new GoogleStrategy({
   async function(request, accessToken, refreshToken, profile, done) {
 
 
-    let user = await GoogleUser.findOne({ googleId: profile.id })
+    let user = await User.findOne({ googleId: profile.id })
     if (!user) {
 
       const newUser = {
@@ -22,7 +22,7 @@ passport.use(new GoogleStrategy({
         image: profile.photos[0].value
       };
       try {
-        user = new GoogleUser(newUser);
+        user = new User(newUser);
         user.save()
         return done(null, user)
       } catch (error) {
@@ -38,7 +38,7 @@ passport.use(new GoogleStrategy({
 
 passport.serializeUser(function(user, cb) {
   process.nextTick(function() {
-    cb(null, user);
+    cb(null, { id: user._id, displayName: user.displayName, email: user.email, image: user.image, joined: user.joinedDate });
   });
 });
 

@@ -38,7 +38,7 @@ const { ensureAuth, ensureGuest } = require('./middleware/ensureAuth')
 app.use('/', require('./controllers/home/home'))
 app.use('/user', ensureAuth, require('./controllers/user/user'))
 app.use('/google', ensureGuest, require('./controllers/google/google'))
-
+app.use('/local', ensureGuest, require('./controllers/local/local'))
 
 
 // connect MongoDB

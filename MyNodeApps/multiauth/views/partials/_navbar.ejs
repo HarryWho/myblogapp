@@ -16,19 +16,19 @@
           <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-person"></i> User
           </a>
-          <ul class="dropdown-menu bg-warning">
+          <ul class="dropdown-menu">
             <li class="nav-item">
               <div aria-labelledby="navbarDropdown">
-                <div class="card bg-warning shadow-lg">
-                  <div class="card-header bg-primary text-light">
+                <div class="card">
+                  <div class="card-header">
                     <%= user.displayName %>
                   </div>
                   <div class="card-body mx-auto">
                     <img src="<%= user.image %>" alt="User profile image" width="100px" class="rounded-circle">
                   </div>
-                  <div class="card-footer bg-primary">
-                    <a href="/profile" class="btn btn-danger my-1 d-block">Profile</a>
-                    <a href="/logout" class="btn btn-danger my-1 d-block">Logout</a>
+                  <div class="card-footer">
+                    <a href="/profile" class="btn btn-outline-danger my-1 d-block">Profile</a>
+                    <a href="/logout" class="btn btn-outline-danger my-1 d-block">Logout</a>
                   </div>
                 </div>
               </div>
@@ -47,7 +47,7 @@
       </ul>
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <button class="btn btn-outline-dark" type="submit">Search</button>
       </form>
     </div>
   </div>
